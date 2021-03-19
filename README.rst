@@ -6,7 +6,7 @@ Self-certifi
 :Keywords: requests, certifi, self-signed, certificates
 :PythonVersion: 3.7
 
-|build-status| |coverage| |linging| |black| |python-versions| |pypi-version|
+|build-status| |coverage| |linting| |black| |python-versions| |pypi-version|
 
 Create a CA-bundle based on certifi_ and self-signed certificates, for usage with requests_.
 
