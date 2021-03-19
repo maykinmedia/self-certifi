@@ -1,7 +1,7 @@
 Self-certifi
 ============
 
-:Version: 0.1.0
+:Version: 1.0.0
 :Source: https://github.com/maykinmedia/self-certifi
 :Keywords: requests, certifi, self-signed, certificates
 :PythonVersion: 3.7
