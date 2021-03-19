@@ -26,15 +26,15 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - name: Install dependencies
-        run: pip install tox tox-gh-actions codecov
+        run: pip install tox tox-gh-actions
 
       - name: Run tests
-        run: |
-          tox
-          codecov --file reports/coverage.xml
-        env:
-          PYTHON_VERSION: ${{ matrix.python }}
-          DJANGO: ${{ matrix.django }}
+        run: tox
+
+      - uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)
 
   publish:
     name: Publish package to PyPI
