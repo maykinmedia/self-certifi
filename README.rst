@@ -1,12 +1,7 @@
 Self-certifi
 ============
 
-:Version: 1.0.0
-:Source: https://github.com/maykinmedia/self-certifi
-:Keywords: requests, certifi, self-signed, certificates
-:PythonVersion: 3.7
-
-|build-status| |coverage| |linting| |black| |python-versions| |pypi-version|
+|build-status| |coverage| |linting| |ruff| |python-versions| |pypi-version|
 
 Create a CA-bundle based on certifi_ and self-signed certificates, for usage with requests_.
 
@@ -24,18 +19,12 @@ Features
 Installation
 ============
 
-Requirements
-------------
-
-* Python 3.7 or newer
-* setuptools 30.3.0 or above
-
 Install
 -------
 
 .. code-block:: bash
 
-    pip install self-certifi
+    uv pip install self-certifi
 
 
 Usage
@@ -62,8 +51,9 @@ Usage
     :target: https://codecov.io/gh/maykinmedia/self-certifi
     :alt: Coverage status
 
-.. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
-    :target: https://github.com/psf/black
+.. |ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
+    :target: https://github.com/astral-sh/ruff
+    :alt: Ruff
 
 .. |python-versions| image:: https://img.shields.io/pypi/pyversions/self-certifi.svg
 

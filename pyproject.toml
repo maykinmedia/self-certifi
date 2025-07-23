@@ -1,0 +1,112 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "self-certifi"
+version = "1.0.0"
+description = "Create a CA-bundle based on certifi and self-signed certificates, for usage with requests."
+authors = [
+    {name = "Maykin Media", email = "support@maykinmedia.nl"}
+]
+readme = "README.rst"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = [
+    "requests",
+    "certifi",
+    "self-signed",
+    "certificates",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Operating System :: Unix",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "certifi",
+]
+
+[project.urls]
+Homepage = "https://github.com/maykinmedia/self-certifi"
+"Bug Tracker" = "https://github.com/maykinmedia/self-certifi/issues"
+"Source Code" = "https://github.com/maykinmedia/self-certifi"
+
+[project.optional-dependencies]
+tests = [
+    "pytest",
+    "pytest-cov",
+    "tox",
+    "ruff",
+]
+release = [
+    "bump-my-version",
+]
+
+[tool.setuptools.packages.find]
+include = ["self_certifi*"]
+namespaces = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.bumpversion]
+current_version = "1.0.0"
+files = [
+    {filename = "pyproject.toml"},
+]
+
+[tool.coverage.run]
+branch = true
+source = ["self_certifi"]
+omit = []
+
+[tool.coverage.report]
+exclude_also = [
+    "if (typing\\.)?TYPE_CHECKING:",
+    "@(typing\\.)?overload",
+    "class .*\\(.*Protocol.*\\):",
+    "@(abc\\.)?abstractmethod",
+    "raise NotImplementedError",
+    "\\.\\.\\.",
+    "\\bpass$",
+]
+
+[tool.pyright]
+include = [
+    "self_certifi",
+    "tests",
+]
+ignore = []
+pythonVersion = "3.10"
+pythonPlatform = "Linux"
+
+[tool.ruff.lint]
+extend-select = [
+    "UP",  # pyupgrade
+    "LOG", # logging
+    "G",
+    "I",   # isort
+    "E",   # pycodestyle
+    "F",   # pyflakes
+    "PERF",# perflint
+    "B",   # flake8-bugbear
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
