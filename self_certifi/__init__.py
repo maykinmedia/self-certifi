@@ -1,6 +1,6 @@
 import os
 import shutil
-from typing import List, Optional
+from collections.abc import Collection
 
 import certifi
 
@@ -10,7 +10,9 @@ __all__ = ("load_self_signed_certs", "EXTRA_CERTS_ENVVAR")
 EXTRA_CERTS_ENVVAR = "EXTRA_VERIFY_CERTS"
 
 
-def load_self_signed_certs(dest: str, paths: Optional[List[str]] = None) -> None:
+def load_self_signed_certs(
+    dest: str | os.PathLike[str], paths: Collection[str] | None = None
+) -> None:
     """
     Expose a CA-bundle with extra certificates to requests, based on certifi.
 
@@ -27,10 +29,10 @@ def load_self_signed_certs(dest: str, paths: Optional[List[str]] = None) -> None
       comma-separated list of paths.
     """
     if paths is None:
-        paths = os.environ.get(EXTRA_CERTS_ENVVAR, "")
-        if not paths:
+        _paths = os.environ.get(EXTRA_CERTS_ENVVAR, "")
+        if not _paths:
             return
-        paths = paths.split(",")
+        paths = _paths.split(",")
 
     if "REQUESTS_CA_BUNDLE" in os.environ:
         raise ValueError(
@@ -40,7 +42,7 @@ def load_self_signed_certs(dest: str, paths: Optional[List[str]] = None) -> None
     # collect all extra certificates
     certs = []
     for path in paths:
-        with open(path, "r") as certfile:
+        with open(path) as certfile:
             certs.append(certfile.read())
 
     # copy certifi bundle to destination directory

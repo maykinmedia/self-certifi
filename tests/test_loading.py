@@ -27,14 +27,14 @@ def test_explicit_certs_list(tmp_path, clean_environ):
     children = [str(x) for x in tmp_path.iterdir()]
     assert children == [bundle_file]
 
-    with open(bundle_file, "r") as infile:
+    with open(bundle_file) as infile:
         bundle = infile.read()
 
     for cert in certs:
-        with open(cert, "r") as cert_file:
+        with open(cert) as cert_file:
             assert cert_file.read() in bundle
 
-    with open(certifi.where(), "r") as certifi_bundle:
+    with open(certifi.where()) as certifi_bundle:
         assert certifi_bundle.read() in bundle
 
 
@@ -52,12 +52,12 @@ def test_envvar_list(tmp_path, clean_environ):
     children = [str(x) for x in tmp_path.iterdir()]
     assert children == [bundle_file]
 
-    with open(bundle_file, "r") as infile:
+    with open(bundle_file) as infile:
         bundle = infile.read()
 
     for cert in certs:
-        with open(cert, "r") as cert_file:
+        with open(cert) as cert_file:
             assert cert_file.read() in bundle
 
-    with open(certifi.where(), "r") as certifi_bundle:
+    with open(certifi.where()) as certifi_bundle:
         assert certifi_bundle.read() in bundle
