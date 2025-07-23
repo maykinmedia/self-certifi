@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "self-certifi"
-version = "1.0.0"
+version = "2.0.0"
 description = "Create a CA-bundle based on certifi and self-signed certificates, for usage with requests."
 authors = [
     {name = "Maykin Media", email = "support@maykinmedia.nl"}
@@ -59,7 +59,7 @@ namespaces = true
 testpaths = ["tests"]
 
 [tool.bumpversion]
-current_version = "1.0.0"
+current_version = "2.0.0"
 files = [
     {filename = "pyproject.toml"},
 ]
