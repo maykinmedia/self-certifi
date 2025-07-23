@@ -6,27 +6,27 @@ on:
     branches:
       - main
     tags:
-    paths:
-      - '**.py'
+      - '*'
   pull_request:
-    paths:
-      - '**.py'
   workflow_dispatch:
 
 jobs:
   linting:
     name: Code-quality checks
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        toxenv: [isort, black]
+        toxenv: [ruff]
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.7'
+          python-version: '3.12'
       - name: Install dependencies
         run: pip install tox
       - run: tox
         env:
           TOXENV: ${{ matrix.toxenv }}
+          FORCE_COLOR: "1"
